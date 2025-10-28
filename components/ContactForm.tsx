@@ -6,12 +6,12 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
@@ -89,7 +89,7 @@ export default function ContactForm() {
         <h3 className="text-2xl font-bold text-slate-900 mb-2">Get Started Today</h3>
         <p className="text-gray-600 mb-8">Fill out the form and we'll be in touch within 24 hours</p>
         
-        <div className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
               Full Name
@@ -164,7 +164,7 @@ export default function ContactForm() {
           <p className="text-xs text-gray-500 text-center">
             By submitting this form, you agree to our privacy policy and terms of service.
           </p>
-        </div>
+        </form>
       </div>
     </div>
   </div>
